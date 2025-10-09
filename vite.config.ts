@@ -12,12 +12,8 @@ export default defineConfig({
     nitro({
       config: {
         preset: "vercel",
-        externals: {
-          inline: [],
-        },
-        rollupConfig: {
-          external: ["sharp", "sharp-ico"],
-        },
+        node: true,
+        minify: false,
       },
     }),
     viteReact(),
