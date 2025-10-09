@@ -1,6 +1,6 @@
 "use client";
 
-import { cn, Progress } from "@ras-sh/ui";
+import { cn } from "@ras-sh/ui";
 import { Upload } from "lucide-react";
 import posthog from "posthog-js";
 import { useDropzone } from "react-dropzone";
@@ -8,10 +8,9 @@ import { useDropzone } from "react-dropzone";
 type UploadZoneProps = {
   onDrop: (files: File[]) => void;
   processing: boolean;
-  progress: number;
 };
 
-export function UploadZone({ onDrop, processing, progress }: UploadZoneProps) {
+export function UploadZone({ onDrop, processing }: UploadZoneProps) {
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop: (files) => {
       const file = files[0];
@@ -65,15 +64,6 @@ export function UploadZone({ onDrop, processing, progress }: UploadZoneProps) {
           </div>
         </div>
       </div>
-
-      {processing && (
-        <div className="mx-auto w-full max-w-md">
-          <div className="mb-2 text-center text-sm text-zinc-300">
-            {progress > 0 ? `Generating icons... ${progress}%` : "Starting..."}
-          </div>
-          <Progress className="h-2 w-full" value={progress} />
-        </div>
-      )}
     </div>
   );
 }

@@ -1,14 +1,7 @@
 import { Button } from "@ras-sh/ui";
 import { Download, RotateCcw } from "lucide-react";
 import posthog from "posthog-js";
-import type { GeneratedIcon } from "~/lib/icon-generator";
-
-type ProcessedIconSet = {
-  original: string;
-  icons: GeneratedIcon[];
-  filename: string;
-  processingTime: number;
-};
+import type { GeneratedIcon, ProcessedIconSet } from "~/lib/types";
 
 type ResultsViewProps = {
   processedImage: ProcessedIconSet;
