@@ -1,6 +1,7 @@
 import { Button } from "@ras-sh/ui";
 import { Download, RotateCcw } from "lucide-react";
 import posthog from "posthog-js";
+import { IconInstructions } from "~/components/icon-instructions";
 import type { GeneratedIcon, ProcessedIconSet } from "~/lib/types";
 
 type ResultsViewProps = {
@@ -113,6 +114,9 @@ export function ResultsView({
             ))}
           </div>
         </div>
+
+        {/* Usage instructions */}
+        <IconInstructions />
       </div>
     </div>
   );

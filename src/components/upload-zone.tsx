@@ -1,5 +1,3 @@
-"use client";
-
 import { cn } from "@ras-sh/ui";
 import { Upload } from "lucide-react";
 import posthog from "posthog-js";
