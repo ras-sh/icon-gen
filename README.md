@@ -1,46 +1,21 @@
-# @ras-sh/template-tanstack-start
+# icon-gen
 
-🚀 Full-stack template with TanStack Start. Includes SSR, file-based routing, and modern tooling.
+🖼️ Generate all essential icon sizes for web and mobile from a single image. Drag, drop, download.
+
+**[Try it live →](https://icon-gen.ras.sh)**
 
 ## Features
 
-- **[TanStack Start](https://tanstack.com/start)** - Full-stack React framework with SSR
-- **TypeScript** - End-to-end type safety
-- **Tailwind CSS v4** + **@ras-sh/ui** - Modern styling and components
+- Drag and drop interface with real-time progress
+- Export as PNG, JPEG, or WebP
 
-## Quick Start
+## Tech Stack
 
-```bash
-pnpm install
-pnpm dev
-```
+Built with [TanStack Start](https://tanstack.com/start) and powered by [sharp](https://github.com/lovell/sharp).
 
-## Building Your App
+## Development
 
-1. Build routes in `src/routes/` with SSR loaders
-2. Add components in `src/components/`
-3. Update `package.json` and branding assets
-
-## Scripts
-
-| Command | Description |
-|---------|-------------|
-| `pnpm dev` | Start development server (port 5173) |
-| `pnpm build` | Build for production |
-| `pnpm preview` | Preview production build |
-| `pnpm check-types` | Run TypeScript type checking |
-| `pnpm check` | Run linter checks |
-| `pnpm fix` | Auto-fix linting issues |
-
-## Project Structure
-
-```
-src/
-├── routes/         # File-based routing with SSR loaders
-├── components/     # Reusable components
-├── lib/            # Utilities (SEO helper, etc.)
-└── router.tsx      # Router configuration
-```
+See [CONTRIBUTING.md](CONTRIBUTING.md) for setup and guidelines.
 
 ## License
 
