@@ -1,6 +1,7 @@
 import { cn } from "@ras-sh/ui";
-import { Upload } from "lucide-react";
+import { AlertCircle, Upload } from "lucide-react";
 import posthog from "posthog-js";
+import { useState } from "react";
 import { useDropzone } from "react-dropzone";
 
 type UploadZoneProps = {
@@ -9,8 +10,11 @@ type UploadZoneProps = {
 };
 
 export function UploadZone({ onDrop, processing }: UploadZoneProps) {
+  const [error, setError] = useState<string | null>(null);
+
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop: (files) => {
+      setError(null);
       const file = files[0];
       if (file) {
         posthog.capture("image_uploaded", {
@@ -22,12 +26,43 @@ export function UploadZone({ onDrop, processing }: UploadZoneProps) {
       }
       onDrop(files);
     },
+    onDropRejected: (rejections) => {
+      const rejection = rejections[0];
+      if (!rejection) {
+        return;
+      }
+
+      const fileError = rejection.errors[0];
+      if (!fileError) {
+        return;
+      }
+
+      switch (fileError.code) {
+        case "file-too-large":
+          setError("File is too large. Maximum size is 4.5MB.");
+          break;
+        case "file-too-small":
+          setError("File is too small. Please upload a valid image.");
+          break;
+        case "file-invalid-type":
+          setError(
+            "Invalid file type. Please upload a JPG, PNG, GIF, or WebP."
+          );
+          break;
+        case "too-many-files":
+          setError("Too many files. Please upload only one image.");
+          break;
+        default:
+          setError("Failed to upload file. Please try again.");
+      }
+    },
     accept: {
       "image/jpeg": [".jpg", ".jpeg"],
       "image/png": [".png"],
       "image/gif": [".gif"],
       "image/webp": [".webp"],
     },
+    maxSize: 4_718_592, // 4.5MB in bytes
     disabled: processing,
     multiple: false,
   });
@@ -62,6 +97,13 @@ export function UploadZone({ onDrop, processing }: UploadZoneProps) {
           </div>
         </div>
       </div>
+
+      {error && (
+        <div className="mx-auto flex max-w-md items-center gap-3 rounded-lg border border-red-900/50 bg-red-950/30 p-4 text-red-400">
+          <AlertCircle className="h-5 w-5 flex-shrink-0" />
+          <p className="text-sm">{error}</p>
+        </div>
+      )}
     </div>
   );
 }
