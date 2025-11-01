@@ -1,6 +1,5 @@
 /// <reference types="vite/client" />
 import { createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
-import { PostHogProvider } from "posthog-js/react";
 import type * as React from "react";
 import { DefaultCatchBoundary } from "~/components/default-catch-boundary";
 import { NotFound } from "~/components/not-found";
@@ -22,6 +21,13 @@ export const Route = createRootRoute({
         description:
           "🖼️ Generate all essential icon sizes for web and mobile from a single image. Drag, drop, download.",
       }),
+    ],
+    scripts: [
+      {
+        src: "https://u.tronite.com/script.js",
+        defer: true,
+        "data-website-id": "8f62c60f-2fdb-4756-bfae-e6ba62afa036",
+      },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
@@ -58,17 +64,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <HeadContent />
       </head>
       <body className="dark min-h-dvh font-sans text-foreground antialiased">
-        <PostHogProvider
-          apiKey={import.meta.env.VITE_POSTHOG_KEY}
-          options={{
-            api_host: import.meta.env.VITE_POSTHOG_HOST,
-            defaults: "2025-05-24",
-            capture_exceptions: true,
-            debug: import.meta.env.MODE === "development",
-          }}
-        >
-          {children}
-        </PostHogProvider>
+        {children}
         <Scripts />
       </body>
     </html>

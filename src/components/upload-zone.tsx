@@ -1,6 +1,5 @@
 import { cn } from "@ras-sh/ui";
 import { AlertCircle, Upload } from "lucide-react";
-import posthog from "posthog-js";
 import { useState } from "react";
 import { useDropzone } from "react-dropzone";
 
@@ -15,15 +14,6 @@ export function UploadZone({ onDrop, processing }: UploadZoneProps) {
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop: (files) => {
       setError(null);
-      const file = files[0];
-      if (file) {
-        posthog.capture("image_uploaded", {
-          project: "icon-gen",
-          file_type: file.type,
-          file_size: file.size,
-          upload_method: isDragActive ? "drag_drop" : "file_picker",
-        });
-      }
       onDrop(files);
     },
     onDropRejected: (rejections) => {
@@ -78,6 +68,7 @@ export function UploadZone({ onDrop, processing }: UploadZoneProps) {
             : "border-zinc-700 hover:border-zinc-600 hover:bg-zinc-900/30",
           processing ? "pointer-events-none opacity-50" : ""
         )}
+        data-umami-event="image_uploaded"
       >
         <input {...getInputProps()} />
 

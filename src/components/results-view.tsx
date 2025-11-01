@@ -1,6 +1,5 @@
 import { Button } from "@ras-sh/ui";
 import { Download, RotateCcw } from "lucide-react";
-import posthog from "posthog-js";
 import { IconInstructions } from "~/components/icon-instructions";
 import type { GeneratedIcon, ProcessedIconSet } from "~/lib/types";
 
@@ -16,8 +15,7 @@ export function ResultsView({
   onProcessMore,
 }: ResultsViewProps) {
   function downloadIcon(icon: GeneratedIcon) {
-    posthog.capture("icon_downloaded", {
-      project: "icon-gen",
+    window.umami?.track("icon_downloaded", {
       icon_name: icon.name,
       icon_size: icon.size,
     });
@@ -25,8 +23,7 @@ export function ResultsView({
   }
 
   function downloadAll() {
-    posthog.capture("download_all_icons_clicked", {
-      project: "icon-gen",
+    window.umami?.track("download_all_icons_clicked", {
       icon_count: processedImage.icons.length,
     });
     // Download each icon
@@ -39,19 +36,19 @@ export function ResultsView({
     <div className="space-y-6">
       <div className="flex flex-wrap items-center justify-center gap-2 md:justify-between">
         <Button
-          onClick={() => {
-            posthog.capture("process_new_image_clicked", {
-              project: "icon-gen",
-            });
-            onProcessMore();
-          }}
+          data-umami-event="process_new_image_clicked"
+          onClick={onProcessMore}
           variant="default"
         >
           <RotateCcw className="size-4" />
           Process New Image
         </Button>
 
-        <Button onClick={downloadAll} variant="outline">
+        <Button
+          data-umami-event="download_all_icons_clicked"
+          onClick={downloadAll}
+          variant="outline"
+        >
           <Download className="size-4" />
           Download All Icons
         </Button>
