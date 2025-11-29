@@ -12,7 +12,7 @@ Thank you for your interest in contributing! This guide will help you get starte
 ### Setup
 
 ```bash
-git clone https://github.com/ras-sh/icon-gen.git
+git clone https://github.com/richardsolomou/icon-gen.git
 cd icon-gen
 pnpm install
 ```

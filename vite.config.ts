@@ -9,12 +9,13 @@ export default defineConfig({
   plugins: [
     tsConfigPaths(),
     tanstackStart(),
-    nitro({ config: { preset: "vercel", node: true } }),
+    nitro({ preset: "vercel", node: true }),
     viteReact(),
     tailwindcss(),
   ],
   ssr: {
     external: ["sharp", "sharp-ico"],
+    noExternal: ["posthog-js", "@posthog/react"],
   },
   optimizeDeps: {
     exclude: ["sharp", "sharp-ico"],

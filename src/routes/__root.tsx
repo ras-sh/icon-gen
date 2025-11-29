@@ -1,8 +1,11 @@
 /// <reference types="vite/client" />
+import geistWoff2 from "@fontsource-variable/geist/files/geist-latin-wght-normal.woff2?url";
+import geistMonoWoff2 from "@fontsource-variable/geist-mono/files/geist-mono-latin-wght-normal.woff2?url";
 import { createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
 import type * as React from "react";
 import { DefaultCatchBoundary } from "~/components/default-catch-boundary";
 import { NotFound } from "~/components/not-found";
+import { PHProvider } from "~/components/ph-provider";
 import { seo } from "~/lib/seo";
 import appCss from "~/styles/app.css?url";
 
@@ -22,15 +25,22 @@ export const Route = createRootRoute({
           "🖼️ Generate all essential icon sizes for web and mobile from a single image. Drag, drop, download.",
       }),
     ],
-    scripts: [
-      {
-        src: "https://u.tronite.com/script.js",
-        defer: true,
-        "data-website-id": "8f62c60f-2fdb-4756-bfae-e6ba62afa036",
-      },
-    ],
     links: [
       { rel: "stylesheet", href: appCss },
+      {
+        rel: "preload",
+        as: "font",
+        type: "font/woff2",
+        href: geistWoff2,
+        crossOrigin: "anonymous",
+      },
+      {
+        rel: "preload",
+        as: "font",
+        type: "font/woff2",
+        href: geistMonoWoff2,
+        crossOrigin: "anonymous",
+      },
       {
         rel: "apple-touch-icon",
         sizes: "180x180",
@@ -64,7 +74,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <HeadContent />
       </head>
       <body className="dark min-h-dvh font-sans text-foreground antialiased">
-        {children}
+        <PHProvider>{children}</PHProvider>
         <Scripts />
       </body>
     </html>

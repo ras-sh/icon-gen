@@ -1,24 +1,24 @@
 {
-  "name": "@ras-sh/template-tanstack-start",
-  "version": "0.0.1",
+  "name": "icon-gen",
+  "version": "0.0.2",
   "type": "module",
   "private": true,
-  "description": "Template for TanStack Start projects.",
+  "description": "🖼️ Generate all essential icon sizes for web and mobile from a single image. Drag, drop, download.",
   "keywords": [],
-  "homepage": "https://ras.sh",
+  "homepage": "https://icon-gen.ras.sh",
   "bugs": {
-    "url": "https://github.com/ras-sh/template-tanstack-start/issues",
-    "email": "hi@ras.sh"
+    "url": "https://github.com/richardsolomou/icon-gen/issues",
+    "email": "richard@solomou.dev"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/ras-sh/template-tanstack-start"
+    "url": "https://github.com/richardsolomou/icon-gen"
   },
   "license": "MIT",
   "author": {
     "name": "Richard Solomou",
-    "email": "hi@ras.sh",
-    "url": "https://ras.sh"
+    "email": "richard@solomou.dev",
+    "url": "https://solomou.dev"
   },
   "scripts": {
     "dev": "vite dev",
@@ -32,32 +32,34 @@
     "@fontsource-variable/geist": "^5.2.8",
     "@fontsource-variable/geist-mono": "^5.2.7",
     "@icons-pack/react-simple-icons": "^13.8.0",
+    "@posthog/react": "^1.5.0",
     "@ras-sh/ui": "^0.0.6",
-    "@tanstack/react-router": "^1.133.36",
-    "@tanstack/react-start": "^1.133.37",
-    "lucide-react": "^0.548.0",
+    "@tanstack/react-router": "^1.139.10",
+    "@tanstack/react-start": "^1.139.10",
+    "lucide-react": "^0.555.0",
+    "posthog-js": "^1.298.1",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-dropzone": "^14.3.8",
-    "sharp": "^0.34.4",
+    "sharp": "^0.34.5",
     "sharp-ico": "^0.1.5",
-    "shiki": "^3.14.0",
-    "zod": "^4.1.12"
+    "shiki": "^3.17.0",
+    "zod": "^4.1.13"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.3.2",
+    "@biomejs/biome": "^2.3.8",
     "@ras-sh/typescript-config": "^0.0.3",
-    "@tailwindcss/vite": "^4.1.16",
-    "@types/node": "^24.9.2",
-    "@types/react": "^19.2.2",
-    "@types/react-dom": "^19.2.2",
-    "@vitejs/plugin-react-swc": "^4.2.0",
-    "lefthook": "^2.0.1",
-    "nitro": "3.0.1-alpha.0",
-    "tailwindcss": "^4.1.16",
+    "@tailwindcss/vite": "^4.1.17",
+    "@types/node": "^24.10.1",
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react-swc": "^4.2.2",
+    "lefthook": "^2.0.4",
+    "nitro": "3.0.1-alpha.1",
+    "tailwindcss": "^4.1.17",
     "typescript": "^5.9.3",
-    "ultracite": "6.0.5",
-    "vite": "^7.1.12",
+    "ultracite": "6.3.8",
+    "vite": "^7.2.4",
     "vite-tsconfig-paths": "^5.1.4"
   }
 }

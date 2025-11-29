@@ -1,3 +1,4 @@
+import { usePostHog } from "@posthog/react";
 import { cn } from "@ras-sh/ui";
 import { AlertCircle, Upload } from "lucide-react";
 import { useState } from "react";
@@ -9,11 +10,19 @@ type UploadZoneProps = {
 };
 
 export function UploadZone({ onDrop, processing }: UploadZoneProps) {
+  const posthog = usePostHog();
   const [error, setError] = useState<string | null>(null);
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop: (files) => {
       setError(null);
+      const file = files[0];
+      if (file) {
+        posthog?.capture("image_uploaded", {
+          file_size: file.size,
+          file_type: file.type,
+        });
+      }
       onDrop(files);
     },
     onDropRejected: (rejections) => {
@@ -68,7 +77,6 @@ export function UploadZone({ onDrop, processing }: UploadZoneProps) {
             : "border-zinc-700 hover:border-zinc-600 hover:bg-zinc-900/30",
           processing ? "pointer-events-none opacity-50" : ""
         )}
-        data-umami-event="image_uploaded"
       >
         <input {...getInputProps()} />
 
@@ -89,9 +97,9 @@ export function UploadZone({ onDrop, processing }: UploadZoneProps) {
         </div>
       </div>
 
-      {error && (
+      {!!error && (
         <div className="mx-auto flex max-w-md items-center gap-3 rounded-lg border border-red-900/50 bg-red-950/30 p-4 text-red-400">
-          <AlertCircle className="h-5 w-5 flex-shrink-0" />
+          <AlertCircle className="h-5 w-5 shrink-0" />
           <p className="text-sm">{error}</p>
         </div>
       )}

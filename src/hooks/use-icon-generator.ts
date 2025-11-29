@@ -1,3 +1,4 @@
+import { usePostHog } from "@posthog/react";
 import { useCallback, useState } from "react";
 import { generateIcons } from "~/lib/icon-generator.server";
 import type { ProcessedIconSet } from "~/lib/types";
@@ -7,6 +8,7 @@ import { fileToBase64, readFileAsDataURL } from "~/lib/utils/file-reader";
  * Hook for processing uploaded images and generating icon sets
  */
 export function useIconGenerator() {
+  const posthog = usePostHog();
   const [processing, setProcessing] = useState(false);
   const [processedImages, setProcessedImages] = useState<ProcessedIconSet[]>(
     []
@@ -51,13 +53,17 @@ export function useIconGenerator() {
       try {
         const processed = await processImage(imageFile);
         setProcessedImages([processed]);
+        posthog?.capture("icons_generated", {
+          icon_count: processed.icons.length,
+          processing_time_ms: processed.processingTime,
+        });
       } catch (error) {
         console.error(`Error processing ${imageFile.name}:`, error);
       } finally {
         setProcessing(false);
       }
     },
-    [processImage]
+    [posthog, processImage]
   );
 
   const downloadIcon = useCallback((dataUrl: string, filename: string) => {
