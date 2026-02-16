@@ -3,10 +3,10 @@ import { Check, Copy } from "lucide-react";
 import { useEffect, useState } from "react";
 import { codeToHtml } from "shiki";
 
-type ShikiCodeBlockProps = {
+interface ShikiCodeBlockProps {
   code: string;
   language: string;
-};
+}
 
 export function ShikiCodeBlock({ code, language }: ShikiCodeBlockProps) {
   const [html, setHtml] = useState<string>("");

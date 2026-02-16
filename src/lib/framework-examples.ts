@@ -1,9 +1,9 @@
-export type FrameworkExample = {
+export interface FrameworkExample {
   id: string;
   name: string;
   htmlCode: string;
   manifestCode: string;
-};
+}
 
 export const FRAMEWORK_EXAMPLES: FrameworkExample[] = [
   {

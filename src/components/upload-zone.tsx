@@ -4,10 +4,10 @@ import { AlertCircle, Upload } from "lucide-react";
 import { useState } from "react";
 import { useDropzone } from "react-dropzone";
 
-type UploadZoneProps = {
+interface UploadZoneProps {
   onDrop: (files: File[]) => void;
   processing: boolean;
-};
+}
 
 export function UploadZone({ onDrop, processing }: UploadZoneProps) {
   const posthog = usePostHog();

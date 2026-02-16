@@ -4,11 +4,11 @@ import { Download, RotateCcw } from "lucide-react";
 import { IconInstructions } from "~/components/icon-instructions";
 import type { GeneratedIcon, ProcessedIconSet } from "~/lib/types";
 
-type ResultsViewProps = {
+interface ResultsViewProps {
   processedImage: ProcessedIconSet;
   onDownloadImage: (dataUrl: string, filename: string) => void;
   onProcessMore: () => void;
-};
+}
 
 export function ResultsView({
   processedImage,

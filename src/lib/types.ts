@@ -1,20 +1,20 @@
-export type GeneratedIcon = {
+export interface GeneratedIcon {
   name: string;
   size: number;
   filename: string;
   dataUrl: string;
-};
+}
 
-export type ProcessedIconSet = {
+export interface ProcessedIconSet {
   original: string;
   icons: GeneratedIcon[];
   filename: string;
   processingTime: number;
-};
+}
 
-export type IconSize = {
+export interface IconSize {
   name: string;
   size: number;
   filename: string;
   format?: "png" | "ico";
-};
+}

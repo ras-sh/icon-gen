@@ -9,10 +9,10 @@ const GenerateIconsInputSchema = z.object({
   imageBuffer: z.string(),
 });
 
-type GenerateIconsResult = {
+interface GenerateIconsResult {
   icons: GeneratedIcon[];
   originalFilename: string;
-};
+}
 
 /**
  * Resizes an image buffer to the specified size with transparent background
