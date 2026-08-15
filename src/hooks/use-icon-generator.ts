@@ -1,6 +1,6 @@
 import { usePostHog } from "@posthog/react";
 import { useCallback, useState } from "react";
-import { generateIcons } from "~/lib/icon-generator.server";
+import { generateIcons } from "~/lib/icon-generator";
 import type { ProcessedIconSet } from "~/lib/types";
 import { fileToBase64, readFileAsDataURL } from "~/lib/utils/file-reader";
 

@@ -59,7 +59,7 @@ async function generateSingleIcon(buffer: Buffer, iconSize: IconSize): Promise<G
  * Server function to generate all icon sizes from an uploaded image
  */
 export const generateIcons = createServerFn({ method: "POST" })
-  .inputValidator(GenerateIconsInputSchema)
+  .validator(GenerateIconsInputSchema)
   .handler(async ({ data }): Promise<GenerateIconsResult> => {
     const { imageBuffer } = data;
     const buffer = Buffer.from(imageBuffer, "base64");
