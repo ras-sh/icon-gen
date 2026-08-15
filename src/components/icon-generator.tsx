@@ -3,8 +3,7 @@ import { UploadZone } from "~/components/upload-zone";
 import { useIconGenerator } from "~/hooks/use-icon-generator";
 
 export function IconGenerator() {
-  const { processing, processedImages, processFiles, downloadIcon, clearAll } =
-    useIconGenerator();
+  const { processing, processedImages, processFiles, downloadIcon, clearAll } = useIconGenerator();
 
   const showResults = processedImages.length > 0;
 

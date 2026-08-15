@@ -10,11 +10,7 @@ interface ResultsViewProps {
   onProcessMore: () => void;
 }
 
-export function ResultsView({
-  processedImage,
-  onDownloadImage,
-  onProcessMore,
-}: ResultsViewProps) {
+export function ResultsView({ processedImage, onDownloadImage, onProcessMore }: ResultsViewProps) {
   const posthog = usePostHog();
 
   function downloadIcon(icon: GeneratedIcon) {
@@ -94,9 +90,7 @@ export function ResultsView({
                   />
                 </div>
                 <div className="space-y-1">
-                  <p className="truncate font-mono text-xs text-zinc-300">
-                    {icon.filename}
-                  </p>
+                  <p className="truncate font-mono text-xs text-zinc-300">{icon.filename}</p>
                   <p className="text-xs text-zinc-500">
                     {icon.size}×{icon.size}
                   </p>

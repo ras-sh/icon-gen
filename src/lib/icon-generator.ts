@@ -30,10 +30,7 @@ function resizeImageToPNG(buffer: Buffer, size: number): Promise<Buffer> {
 /**
  * Generates a single icon from the source buffer
  */
-async function generateSingleIcon(
-  buffer: Buffer,
-  iconSize: IconSize
-): Promise<GeneratedIcon> {
+async function generateSingleIcon(buffer: Buffer, iconSize: IconSize): Promise<GeneratedIcon> {
   let resizedBuffer: Buffer;
   let mimeType: string;
 
@@ -62,13 +59,13 @@ async function generateSingleIcon(
  * Server function to generate all icon sizes from an uploaded image
  */
 export const generateIcons = createServerFn({ method: "POST" })
-  .inputValidator(GenerateIconsInputSchema)
+  .validator(GenerateIconsInputSchema)
   .handler(async ({ data }): Promise<GenerateIconsResult> => {
     const { imageBuffer } = data;
     const buffer = Buffer.from(imageBuffer, "base64");
 
     const icons = await Promise.all(
-      ICON_SIZES.map((iconSize) => generateSingleIcon(buffer, iconSize))
+      ICON_SIZES.map((iconSize) => generateSingleIcon(buffer, iconSize)),
     );
 
     return {

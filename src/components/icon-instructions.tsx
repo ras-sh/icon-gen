@@ -19,20 +19,13 @@ export function IconInstructions() {
   return (
     <div className="space-y-6">
       <div>
-        <h3 className="mb-2 font-semibold text-zinc-100">
-          How to Use Your Icons
-        </h3>
+        <h3 className="mb-2 font-semibold text-zinc-100">How to Use Your Icons</h3>
         <p className="text-sm text-zinc-400">
-          Add these files to your project's public directory and use the code
-          examples below.
+          Add these files to your project's public directory and use the code examples below.
         </p>
       </div>
 
-      <Tabs
-        className="space-y-6"
-        onValueChange={setActiveTab}
-        value={activeTab}
-      >
+      <Tabs className="space-y-6" onValueChange={setActiveTab} value={activeTab}>
         <TabsList>
           {FRAMEWORK_EXAMPLES.map((framework) => (
             <TabsTrigger key={framework.id} value={framework.id}>
@@ -52,10 +45,7 @@ export function IconInstructions() {
               <h4 className="mb-2 font-medium text-sm text-zinc-300">
                 {framework.id === "html" ? "HTML Head Tags" : "Configuration"}
               </h4>
-              <ShikiCodeBlock
-                code={framework.htmlCode}
-                language={getLanguage(framework.id)}
-              />
+              <ShikiCodeBlock code={framework.htmlCode} language={getLanguage(framework.id)} />
             </div>
 
             <div>
