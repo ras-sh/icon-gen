@@ -10,34 +10,29 @@ import { fileToBase64, readFileAsDataURL } from "~/lib/utils/file-reader";
 export function useIconGenerator() {
   const posthog = usePostHog();
   const [processing, setProcessing] = useState(false);
-  const [processedImages, setProcessedImages] = useState<ProcessedIconSet[]>(
-    []
-  );
+  const [processedImages, setProcessedImages] = useState<ProcessedIconSet[]>([]);
 
-  const processImage = useCallback(
-    async (file: File): Promise<ProcessedIconSet> => {
-      const startTime = Date.now();
+  const processImage = useCallback(async (file: File): Promise<ProcessedIconSet> => {
+    const startTime = Date.now();
 
-      // Read file for preview and server processing
-      const [originalDataUrl, base64] = await Promise.all([
-        readFileAsDataURL(file),
-        fileToBase64(file),
-      ]);
+    // Read file for preview and server processing
+    const [originalDataUrl, base64] = await Promise.all([
+      readFileAsDataURL(file),
+      fileToBase64(file),
+    ]);
 
-      // Generate icons on server
-      const result = await generateIcons({
-        data: { imageBuffer: base64 },
-      });
+    // Generate icons on server
+    const result = await generateIcons({
+      data: { imageBuffer: base64 },
+    });
 
-      return {
-        original: originalDataUrl,
-        icons: result.icons,
-        filename: file.name,
-        processingTime: Date.now() - startTime,
-      };
-    },
-    []
-  );
+    return {
+      original: originalDataUrl,
+      icons: result.icons,
+      filename: file.name,
+      processingTime: Date.now() - startTime,
+    };
+  }, []);
 
   const processFiles = useCallback(
     async (files: File[]) => {
@@ -63,7 +58,7 @@ export function useIconGenerator() {
         setProcessing(false);
       }
     },
-    [posthog, processImage]
+    [posthog, processImage],
   );
 
   const downloadIcon = useCallback((dataUrl: string, filename: string) => {

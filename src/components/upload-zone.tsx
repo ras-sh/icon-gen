@@ -44,9 +44,7 @@ export function UploadZone({ onDrop, processing }: UploadZoneProps) {
           setError("File is too small. Please upload a valid image.");
           break;
         case "file-invalid-type":
-          setError(
-            "Invalid file type. Please upload a JPG, PNG, GIF, or WebP."
-          );
+          setError("Invalid file type. Please upload a JPG, PNG, GIF, or WebP.");
           break;
         case "too-many-files":
           setError("Too many files. Please upload only one image.");
@@ -75,7 +73,7 @@ export function UploadZone({ onDrop, processing }: UploadZoneProps) {
           isDragActive
             ? "border-zinc-100 bg-zinc-900/50"
             : "border-zinc-700 hover:border-zinc-600 hover:bg-zinc-900/30",
-          processing ? "pointer-events-none opacity-50" : ""
+          processing ? "pointer-events-none opacity-50" : "",
         )}
       >
         <input {...getInputProps()} />
@@ -90,9 +88,7 @@ export function UploadZone({ onDrop, processing }: UploadZoneProps) {
                   ? "Drop image here"
                   : "Drop image here or click to select"}
             </h2>
-            <p className="text-lg text-zinc-400">
-              Generate web & mobile icons from your image
-            </p>
+            <p className="text-lg text-zinc-400">Generate web & mobile icons from your image</p>
           </div>
         </div>
       </div>
