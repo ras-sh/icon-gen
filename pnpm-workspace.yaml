@@ -7,5 +7,5 @@ allowBuilds:
   sharp: true
 
 minimumReleaseAgeExclude:
-  - ras-stack@0.39.5
+  - ras-stack@0.41.1
 minimumReleaseAge: 10080
