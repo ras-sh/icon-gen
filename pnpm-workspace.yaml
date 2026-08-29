@@ -5,6 +5,7 @@ allowBuilds:
   lefthook: true
   protobufjs: false
   sharp: true
+  workerd: true
 
 minimumReleaseAgeExclude:
   - ras-stack@0.41.1
