@@ -9,17 +9,3 @@ export function readFileAsDataURL(file: File): Promise<string> {
     reader.readAsDataURL(file);
   });
 }
-
-/**
- * Converts a file to base64 string (without the data URL prefix)
- */
-export async function fileToBase64(file: File): Promise<string> {
-  const dataUrl = await readFileAsDataURL(file);
-  const base64Data = dataUrl.split(",")[1];
-
-  if (!base64Data) {
-    throw new Error("Failed to convert file to base64");
-  }
-
-  return base64Data;
-}

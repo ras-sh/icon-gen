@@ -2,7 +2,7 @@ import { usePostHog } from "@posthog/react";
 import { useCallback, useState } from "react";
 import { generateIcons } from "~/lib/icon-generator";
 import type { ProcessedIconSet } from "~/lib/types";
-import { fileToBase64, readFileAsDataURL } from "~/lib/utils/file-reader";
+import { readFileAsDataURL } from "~/lib/utils/file-reader";
 
 /**
  * Hook for processing uploaded images and generating icon sets
@@ -15,20 +15,14 @@ export function useIconGenerator() {
   const processImage = useCallback(async (file: File): Promise<ProcessedIconSet> => {
     const startTime = Date.now();
 
-    // Read file for preview and server processing
-    const [originalDataUrl, base64] = await Promise.all([
+    const [originalDataUrl, icons] = await Promise.all([
       readFileAsDataURL(file),
-      fileToBase64(file),
+      generateIcons(file),
     ]);
-
-    // Generate icons on server
-    const result = await generateIcons({
-      data: { imageBuffer: base64 },
-    });
 
     return {
       original: originalDataUrl,
-      icons: result.icons,
+      icons,
       filename: file.name,
       processingTime: Date.now() - startTime,
     };
